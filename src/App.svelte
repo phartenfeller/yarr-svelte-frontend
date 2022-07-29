@@ -1,11 +1,11 @@
 <script>
   import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
-  import FeedListDesktop from './components/FeedListDesktop.svelte';
+  import FeedListLoader from './components/FeedListLoader.svelte';
 
   const queryClient = new QueryClient();
 </script>
 
-<div class="h-screen flex">
+<div class="h-screen flex subpixel-antialiased">
   <QueryClientProvider client={queryClient}>
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
     <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
@@ -258,7 +258,7 @@
       </div>
     </div>
 
-    <FeedListDesktop />
+    <FeedListLoader />
     <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
       <div class="lg:hidden">
         <div

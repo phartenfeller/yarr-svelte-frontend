@@ -28,5 +28,8 @@
       /></svg
     >
   {/if}
-  <span>{feedEntry.title}</span>
+  <div class="flex justify-between w-full">
+    <span>{feedEntry.title}</span>
+    <span class="mr-2 font-light text-gray-600">{feedEntry.unreadCount}</span>
+  </div>
 </button>
