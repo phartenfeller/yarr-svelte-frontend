@@ -39,3 +39,26 @@ or
 yarn build
 ```
 
+## Dev
+
+### Run yarr with Docker
+
+```sh
+docker run -d --name='yarr-rss' -v $(pwd)/data:/data -p 7070:7070 arsfeld/yarr:latest
+```
+
+Go to [localhost:7070](http://localhost:7070) and add some feeds / folders.
+
+### Set up proxy
+
+Unfortunately we need to run some kind of proxy to get rid of cors headers:
+
+```sh
+node ./dev/corsproxy.js
+```
+
+### Start frontend
+
+```sh
+yarn dev
+```
