@@ -28,10 +28,10 @@
     <button
       on:click={handleOpen}
       type="button"
-      class="ml-1 mr-[1px] px-1 py-2 h-full rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300"
+      class="ml-1 mr-[1px] py-1 h-full rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300"
     >
       <svg
-        class="w-4 h-4  text-gray-600 transition-transform {open
+        class="w-5 h-5  text-gray-600 transition-transform {open
           ? 'rotate-90'
           : ''}"
         fill="none"
@@ -54,9 +54,13 @@
       <span class="mr-2 font-light text-gray-600">{folder.unreadCount}</span>
     </button>
   </div>
-  <ul class="ml-4 {open ? 'block' : 'hidden'}" use:autoAnimate>
-    {#each folder.feeds as feed}
-      <FeedListEntry feedEntry={feed} />
-    {/each}
+  <ul class="ml-4" use:autoAnimate>
+    {#if open}
+      {#each folder.feeds as feed}
+        <li>
+          <FeedListEntry feedEntry={feed} />
+        </li>
+      {/each}
+    {/if}
   </ul>
 </div>

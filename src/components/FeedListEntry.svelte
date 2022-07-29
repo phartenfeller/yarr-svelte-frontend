@@ -8,14 +8,14 @@
 >
   {#if feedEntry.has_icon}
     <img
-      class="h-4 w-4 mr-2"
+      class="h-5 w-5 mr-2"
       src={`URL_BASE_PATH/api/feeds/${feedEntry.id}/icon`}
       alt=""
       loading="lazy"
     />
   {:else}
     <svg
-      class="w-4 h-4 mr-2 text-gray-600"
+      class="w-5 h-5 mr-2 text-gray-600"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -29,7 +29,7 @@
     >
   {/if}
   <div class="flex justify-between w-full">
-    <span>{feedEntry.title}</span>
+    <span class="text-left line-clamp-1 mr-3">{feedEntry.title}</span>
     <span class="mr-2 font-light text-gray-600">{feedEntry.unreadCount}</span>
   </div>
 </button>

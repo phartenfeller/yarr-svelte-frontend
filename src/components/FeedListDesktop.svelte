@@ -7,12 +7,43 @@
   export let folders;
   export let feeds;
 
-  $: [feedStats, folders] = computeFeedData(feedStats, folders, feeds);
+  let sumUnread = 0;
+
+  $: [feedStats, folders, sumUnread] = computeFeedData(
+    feedStats,
+    folders,
+    feeds
+  );
 </script>
 
 <ul class="space-y-1">
+  <li>
+    <button
+      type="button"
+      class="p-1 w-full flex items-center rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300"
+    >
+      <svg
+        class="w-5 h-5 mr-2 text-gray-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+        />
+      </svg>
+      <div class="flex justify-between w-full">
+        <span class="line-clamp-1 mr-3">All Feeds</span>
+        <span class="mr-2 font-light text-gray-600">{sumUnread}</span>
+      </div>
+    </button>
+  </li>
+
   {#each folders as folder}
-    <li class="">
+    <li>
       <FolderDisplay {folder} />
     </li>
   {/each}

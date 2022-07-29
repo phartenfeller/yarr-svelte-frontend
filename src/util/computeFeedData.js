@@ -1,4 +1,6 @@
 function computeFeedData(_feedStats, _folders, _feeds) {
+  let _sumUnread = 0;
+
   _folders = _folders.map((f) => {
     return {
       ...f,
@@ -11,6 +13,8 @@ function computeFeedData(_feedStats, _folders, _feeds) {
 
   _feedStats.forEach((f) => {
     if (f.unread > 0) {
+      _sumUnread += f.unread;
+
       const folder = _folders.find((folder) =>
         folder.feeds.some((feed) => feed.id === f.feed_id)
       );
@@ -25,7 +29,7 @@ function computeFeedData(_feedStats, _folders, _feeds) {
 
   console.log({ _feedStats, _folders, _feeds });
 
-  return [_feedStats, _folders];
+  return [_feedStats, _folders, _sumUnread];
 }
 
 export default computeFeedData;
