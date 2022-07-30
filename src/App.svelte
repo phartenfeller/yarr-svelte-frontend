@@ -320,4 +320,8 @@
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
+
+  .c-feed-button {
+    @apply rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300;
+  }
 </style>

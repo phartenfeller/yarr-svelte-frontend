@@ -1,3 +1,5 @@
+import { cacheFeed } from './feedCache';
+
 function computeFeedData(_feedStats, _folders, _feeds) {
   let _sumUnread = 0;
 
@@ -9,7 +11,10 @@ function computeFeedData(_feedStats, _folders, _feeds) {
     };
   });
 
-  _feeds.forEach((f) => (f.unreadCount = 0));
+  _feeds.forEach((f) => {
+    f.unreadCount = 0;
+    cacheFeed(f);
+  });
 
   _feedStats.forEach((f) => {
     if (f.unread > 0) {

@@ -1,10 +1,17 @@
 <script>
+  import { activeFeed } from '../stores/aciveItemsStore';
+
   export let feedEntry;
+
+  function setActiveFeed() {
+    activeFeed.set(`feed_id=${feedEntry.id}`);
+  }
 </script>
 
 <button
+  on:click={setActiveFeed}
   type="button"
-  class="p-1 w-full flex items-center rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300"
+  class="c-feed-button p-1 w-full flex items-center"
 >
   {#if feedEntry.has_icon}
     <img

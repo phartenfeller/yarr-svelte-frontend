@@ -2,6 +2,7 @@
   import FeedListEntry from './FeedListEntry.svelte';
   import FolderDisplay from './FolderDisplay.svelte';
   import computeFeedData from '../util/computeFeedData';
+  import { activeFeed } from '../stores/aciveItemsStore';
 
   export let feedStats;
   export let folders;
@@ -14,13 +15,18 @@
     folders,
     feeds
   );
+
+  function setActiveFeed() {
+    activeFeed.set(``);
+  }
 </script>
 
 <ul class="space-y-1">
   <li>
     <button
+      on:click={setActiveFeed}
       type="button"
-      class="p-1 w-full flex items-center rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300"
+      class="c-feed-button p-1 w-full flex items-center"
     >
       <svg
         class="w-5 h-5 mr-2 text-gray-600"
