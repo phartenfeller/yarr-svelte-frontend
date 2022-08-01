@@ -1,6 +1,7 @@
 <script>
   import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
   import FeedContent from './components/FeedContent/FeedContent.svelte';
+  import FeedItem from './components/FeedItem/FeedItem.svelte';
   import FeedListLoader from './components/FeedListLoader.svelte';
 
   const queryClient = new QueryClient();
@@ -300,17 +301,7 @@
       </div>
       <div class="flex-1 relative z-0 flex overflow-hidden">
         <FeedContent />
-        <main
-          class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last"
-        >
-          <!-- Start main area-->
-          <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-            <div
-              class="h-full border-2 border-gray-200 border-dashed rounded-lg"
-            />
-          </div>
-          <!-- End main area -->
-        </main>
+        <FeedItem />
       </div>
     </div>
   </QueryClientProvider>
@@ -322,6 +313,6 @@
   @tailwind utilities;
 
   .c-feed-button {
-    @apply rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300;
+    @apply rounded hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-300 transition-colors ease-in-out;
   }
 </style>

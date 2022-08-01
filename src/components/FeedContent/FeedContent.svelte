@@ -1,5 +1,5 @@
 <script>
-  import { activeFeed } from '../../stores/aciveItemsStore';
+  import { activeFeed, activeItem } from '../../stores/aciveItemsStore';
   import { useQuery } from '@sveltestack/svelte-query';
   import getDateString from '../../util/getDateString';
   import { getFeedTitle } from '../../util/feedCache';
@@ -24,6 +24,10 @@
     return url;
   }
 
+  function handleClick(itemId) {
+    activeItem.set(itemId);
+  }
+
   activeFeed.subscribe((value) => {
     feedQuery = value;
   });
@@ -42,19 +46,26 @@
 >
   {feedQuery}
   <!-- Start secondary column (hidden on smaller screens) -->
-  <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
+  <div class="absolute inset-0 py-6 px-2 sm:px-3 lg:px-4">
     {#if !feedContent || $feedContent.isLoading}
       <span>Loading...</span>
     {:else if $feedContent.error}
       <span>An error has occurred: {$feedContent.error.message}</span>
     {:else}
-      <ul>
+      <ul class="space-y-1">
         {#each $feedContent.data.list as content}
           <li>
-            <button class="c-feed-button p-1 w-full text-left">
-              <div class="text-sm flex justify-between">
-                <span class="line-clamp-1">{getFeedTitle(content.feed_id)}</span
-                >
+            <button
+              on:click={() => handleClick(content.id)}
+              class="c-feed-button px-4 py-2 w-full text-left"
+            >
+              <div class="text-sm flex justify-between text-gray-500">
+                <span class="flex line-clamp-1">
+                  {#if content.status === 'unread'}
+                    <span class="mr-0.5 text-teal-400/50">●</span>
+                  {/if}
+                  <span class="">{getFeedTitle(content.feed_id)}</span>
+                </span>
                 <span>
                   {getDateString(new Date(content.date))}
                 </span>
