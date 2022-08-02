@@ -14,7 +14,7 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "autoprefixer": "^10.4.8",
     "cors-anywhere": "^0.4.4",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
